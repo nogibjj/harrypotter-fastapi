@@ -32,8 +32,8 @@ def generate(id: int):
     return {'Generation result': id} 
 
 # Calculate the frequency of top 20 most common words for the book with input id
-@app.get("/frequency-of-top-20-most-common-words/{bookid}")
-def common_words(bookid: int): 
+@app.get("/common-words/{bookid}")
+def top_20_common_words(bookid: int): 
     if bookid >= 1 and bookid <= 7:
         result = get_freq(bookid)
         return {"data": result}
@@ -41,8 +41,8 @@ def common_words(bookid: int):
         return {"message": "Please enter a valid book id from 1 - 7."}
 
 # Generate harry potter styled text based on user input
-@app.post("/inputs/")
-def user_input(input: Input): 
+@app.post("/text-generator/")
+def text_generator(input: Input): 
     corpus = generate_corpus(input.book_num)
     ans = finish_sentence(input.sentence, input.n, corpus, input.text_length)
     return {"message": ans}
