@@ -2,3 +2,4 @@ fastapi
 unicorn
 transformers
 uvicorn
+pydantic
