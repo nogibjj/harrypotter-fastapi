@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 import gunicorn
 import uvicorn
+import uuid 
+import io 
 from pydantic import BaseModel
 from generate import generate_corpus, finish_sentence
 
@@ -14,11 +16,22 @@ class Input(BaseModel):
 
 @app.get("/")
 def home():
-    return {'Welcome to the Harry Potter Text Generator API!'}
+    return {'Message': 'Welcome to the Harry Potter Text Generator API!'}
 
-@app.get("/generate/{text}")
-def generate(text: str): 
-    return {'Generation result': text} 
+@app.get("/list-of-books/{bookid}")
+def list_of_books(bookid: int): 
+    if bookid >= 1 and bookid <= 7:
+        text_file = open('Data/Book' + str(bookid) + '.txt', "r", encoding="utf-8")
+        data = text_file.read().strip()
+        text_file.close()
+        return {"book" : data}
+    else: 
+        return {"book": "Please enter a valid book id from 1 - 7."}
+
+
+@app.get("/generate-new-text/{id}")
+def generate(id: int): 
+    return {'Generation result': id} 
 
 
 @app.post("/inputs/")
