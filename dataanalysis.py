@@ -5,11 +5,9 @@ import nltk
 from wordcloud import STOPWORDS
 from nltk.corpus import stopwords
 
+#     The code in this file is inspired by CHANR 's Harry Potter analysis
+#     https://www.kaggle.com/code/chandanarprasad/analysis-of-harry-potter-books
 
-"""
-    The code in this file is inspired by CHANR 's Harry Potter analysis 
-    https://www.kaggle.com/code/chandanarprasad/analysis-of-harry-potter-books
-"""
 
 # Read .txt data into a variable
 def read_book(bookid):

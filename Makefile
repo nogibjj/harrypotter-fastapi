@@ -12,4 +12,4 @@ test:
 
 refactor: format lint
 
-all: install format
+all: install format lint refactor

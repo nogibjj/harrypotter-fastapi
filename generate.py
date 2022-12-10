@@ -174,11 +174,11 @@ def finish_sentence(sentence, n, corpus, text_length, deterministic=False):
 
 if __name__ == "__main__":
     # This is a sample of using the text generator
-    sentence = "It is made of"  # sentence to start with
-    n = 3  # ngram, number of words before to be considered. Better with 2-4
-    book_num = 1  # 1-7, but better with 1-3 because the book files were small
-    text_length = 100  # length of text to generate
+    Sentence = "It is made of"  # sentence to start with
+    N = 3  # ngram, number of words before to be considered. Better with 2-4
+    Book_num = 1  # 1-7, but better with 1-3 because the book files were small
+    Text_length = 100  # length of text to generate
 
-    corpus = generate_corpus(book_num)
-    ans = finish_sentence(sentence, n, corpus, text_length)
+    Corpus = generate_corpus(Book_num)
+    ans = finish_sentence(Sentence, N, Corpus, Text_length)
     print(ans)
