@@ -171,7 +171,7 @@ def finish_sentence(sentence, n, corpus, text_length, deterministic=False):
             sentence.append(pred_word)
     return " ".join(sentence)
 
-"""
+
 # Test text generator
 if __name__ == "__main__":
     # This is a sample of using the text generator
@@ -183,4 +183,3 @@ if __name__ == "__main__":
     Corpus = generate_corpus(Book_num)
     ans = finish_sentence(Sentence, N, Corpus, Text_length)
     print(ans)
-"""
