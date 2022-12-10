@@ -3,3 +3,6 @@ unicorn
 transformers
 uvicorn
 pydantic
+nltk
+wordcloud
+

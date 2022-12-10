@@ -1,9 +1,8 @@
 import pandas as pd
-import numpy as np
 from collections import Counter
 
 import nltk
-from wordcloud import WordCloud, STOPWORDS
+from wordcloud import STOPWORDS
 from nltk.corpus import stopwords
 
 
