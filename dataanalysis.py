@@ -2,6 +2,8 @@ import pandas as pd
 from collections import Counter
 
 import nltk
+
+nltk.download("stopwords")
 from wordcloud import STOPWORDS
 from nltk.corpus import stopwords
 
