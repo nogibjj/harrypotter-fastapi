@@ -3,3 +3,5 @@ unicorn
 transformers
 uvicorn
 pydantic
+pytest 
+black
