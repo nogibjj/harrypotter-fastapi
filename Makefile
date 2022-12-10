@@ -13,7 +13,6 @@ test:
 refactor: format lint
 
 run: 
-	make all 
 	python3 -m uvicorn api:app --reload
 
 all: install format lint refactor
