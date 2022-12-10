@@ -13,8 +13,8 @@ def generate_corpus(book_num):
     Returns:
         A list with words in the selected book
     """
-    filepath = './Data/Book' + str(book_num) + '.txt'
-    file1 = open(filepath, 'r', encoding='utf-8')
+    filepath = "./Data/Book" + str(book_num) + ".txt"
+    file1 = open(filepath, "r", encoding="utf-8")
     Lines = file1.readlines()
 
     word_list = []
@@ -26,7 +26,7 @@ def generate_corpus(book_num):
             continue
         if line.startswith("Page"):
             continue
-        word_list.append(line.strip().split(' '))
+        word_list.append(line.strip().split(" "))
 
     word_list = [w.lower() for words in word_list for w in words]
     return word_list
@@ -61,7 +61,7 @@ def generate_prob_matrix(n, corpus):
 
         # generate ngrams and their index dictionary
         if i >= n - 1:
-            gram = tuple(corpus[i + 1 - n:i + 1])
+            gram = tuple(corpus[i + 1 - n : i + 1])
             ngram_li.append(gram)
             if gram[:-1] not in ngram_idx:
                 ngram_idx[gram[:-1]] = g_idx
@@ -136,7 +136,7 @@ def finish_sentence(sentence, n, corpus, text_length, deterministic=False):
 
     """
 
-    sentence = sentence.strip().split(' ')
+    sentence = sentence.strip().split(" ")
     # if unigram
     if n == 1:
         while len(sentence) < text_length:
@@ -150,7 +150,7 @@ def finish_sentence(sentence, n, corpus, text_length, deterministic=False):
         # Begin text generation
         while len(sentence) < text_length:
             for k in range(len(n_li)):
-                prefix = tuple(sentence[-n_li[k] + 1:])
+                prefix = tuple(sentence[-n_li[k] + 1 :])
                 gram_idx = ngram_dict_li[k].get(prefix)
                 if gram_idx is not None:
                     break
@@ -162,13 +162,14 @@ def finish_sentence(sentence, n, corpus, text_length, deterministic=False):
                 if deterministic:
                     pred_idx = np.argmax(p_matrix_li[k][:, gram_idx])
                 else:
-                    pred_idx = choices(np.arange(len(word_idx)),
-                                       p_matrix_li[k][:, gram_idx])[0]
+                    pred_idx = choices(
+                        np.arange(len(word_idx)), p_matrix_li[k][:, gram_idx]
+                    )[0]
 
                 pred_word = [i for i in word_idx if word_idx[i] == pred_idx][0]
 
             sentence.append(pred_word)
-    return ' '.join(sentence)
+    return " ".join(sentence)
 
 
 if __name__ == "__main__":
