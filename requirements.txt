@@ -5,4 +5,5 @@ uvicorn
 pydantic
 nltk
 wordcloud
-
+pytest 
+black
