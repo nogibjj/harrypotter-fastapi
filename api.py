@@ -42,11 +42,6 @@ def list_of_books(bookid: int):
         return {"book": "Please enter a valid book id from 1 - 7."}
 
 
-@app.get("/generate-new-text/{id}")
-def generate():
-    return {"Generation result": id}
-
-
 # Calculate the frequency of top 20 most common words for the book with ipt id
 @app.get("/common-words/{bookid}")
 def top_20_common_words(bookid: int):
