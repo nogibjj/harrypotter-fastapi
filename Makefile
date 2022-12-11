@@ -21,4 +21,4 @@ deploy:
 run: 
 	python3 -m uvicorn api:app --reload
 
-all: install refactor test
+all: install refactor test deploy
