@@ -1,8 +1,13 @@
 # harrypotter-fastapi
 
+![example workflow](https://https://github.com/nogibjj/harrypotter-fastapi/actions/workflows/main.yml/badge.svg)
+
 The project is a **Markov Text Generator** based on the seven Harry Potter Books Corpora. 
 
 The original dataset can be found on kaggle from [here](https://www.kaggle.com/datasets/balabaskar/harry-potter-books-corpora-part-1-7).
+
+## Project Structure
+![image](https://github.com/463548483/Zijing-proj4/blob/main/proj4.png)
 
 ## 7 Harry Potter Books
 
