@@ -1,6 +1,6 @@
 # harrypotter-fastapi
 
-![example workflow](https://https://github.com/nogibjj/harrypotter-fastapi/actions/workflows/main.yml/badge.svg)
+![example workflow](https://github.com/nogibjj/harrypotter-fastapi/actions/workflows/main.yml/badge.svg)
 
 The project is a **Markov Text Generator** based on the seven Harry Potter Books Corpora. 
 
