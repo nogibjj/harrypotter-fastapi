@@ -57,7 +57,7 @@ def top_20_common_words(bookid: int):
         return {"message": "Please enter a valid book id from 1 - 7."}
 
 
-# Generate harry potter styled text based on user ipt
+# Generate harry potter styled text based on user input
 @app.post("/text-generator/")
 def text_generator(ipt: Input, code: str = ""):
     if code and not dynamo_micros.exist(code):
