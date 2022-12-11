@@ -1,7 +1,10 @@
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from generate import generate_corpus, finish_sentence
 from dataanalysis import get_freq
+from DB import dynamo_micros
+import uuid
 
 app = FastAPI()
 
@@ -16,6 +19,14 @@ class Input(BaseModel):
 @app.get("/")
 def home():
     return {"message": "Welcome to the Harry Potter Text Generator API!"}
+
+
+@app.post("/code")
+def get_code():
+    code = str(uuid.uuid1())[:8]
+    if dynamo_micros.new_key(code):
+        return code
+    return {"message": "system error in storage"}
 
 
 # Show the content of the corpes book in the list of 7 books
@@ -48,7 +59,42 @@ def top_20_common_words(bookid: int):
 
 # Generate harry potter styled text based on user ipt
 @app.post("/text-generator/")
-def text_generator(ipt: Input):
+def text_generator(ipt: Input, code: str = ""):
+    if code and not dynamo_micros.exist(code):
+        return {"message": "Code is not existed"}
     corpus = generate_corpus(ipt.book_num)
     ans = finish_sentence(ipt.sentence, ipt.n, corpus, ipt.text_length)
+    if code:
+        # if code is not empty, store it inside DynamoDB
+        dynamo_micros.insert(code, ans)
     return {"message": ans}
+
+
+# Check history texts by code
+@app.get("/history/{code}")
+def get_history(code: str):
+    if not dynamo_micros.exist(code):
+        return {"message": "code is not existed"}
+    data = dynamo_micros.get_texts(code)
+    msg = {}
+    for i, text in enumerate(data):
+        msg[i] = text
+    return {"message": msg}
+
+
+@app.get("/history/delete/{code}/{index}")
+def delete_history(code: str, index: int):
+    if not dynamo_micros.exist(code):
+        return {"message": "code is not existed"}
+    return dynamo_micros.delete(code, index)
+
+
+@app.post("/download/{code}")
+async def download(code: str):
+    if not dynamo_micros.exist(code):
+        return {"message": "code is not existed"}
+    filepath = "static/" + str(uuid.uuid1()) + "_" + code + ".txt"
+    data = dynamo_micros.get_texts(code)
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.writelines(data)
+    return FileResponse(filepath, filename=f"{code}.txt".format(code=code))
