@@ -13,10 +13,11 @@ test:
 refactor: format lint
 
 deploy:
-	aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/s6y1u4h5	
+	sudo dockerd
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 216514549505.dkr.ecr.us-east-1.amazonaws.com
 	docker build -t harrypotter .
-	docker tag harrypotter:latest public.ecr.aws/s6y1u4h5/harrypotter:latest
-	docker push public.ecr.aws/s6y1u4h5/harrypotter:latest
+	docker tag harrypotter:latest 216514549505.dkr.ecr.us-east-1.amazonaws.com/harrypotter:latest
+	docker push 216514549505.dkr.ecr.us-east-1.amazonaws.com/harrypotter:latest
 
 run: 
 	python3 -m uvicorn api:app --reload
