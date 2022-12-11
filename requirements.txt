@@ -1,4 +1,5 @@
 pylint
+pandas
 fastapi
 unicorn
 transformers
