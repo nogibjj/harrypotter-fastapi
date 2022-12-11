@@ -10,3 +10,4 @@ wordcloud
 pytest 
 black
 requests
+httpx
