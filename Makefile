@@ -13,7 +13,6 @@ test:
 refactor: format lint
 
 deploy:
-	sudo dockerd
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 216514549505.dkr.ecr.us-east-1.amazonaws.com
 	docker build -t harrypotter .
 	docker tag harrypotter:latest 216514549505.dkr.ecr.us-east-1.amazonaws.com/harrypotter:latest

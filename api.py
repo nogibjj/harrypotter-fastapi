@@ -5,6 +5,7 @@ from generate import generate_corpus, finish_sentence
 from dataanalysis import get_freq
 from DB import dynamo_micros
 import uuid
+import uvicorn
 
 app = FastAPI()
 
@@ -93,3 +94,7 @@ async def download(code: str):
     with open(filepath, "w", encoding="utf-8") as f:
         f.writelines(data)
     return FileResponse(filepath, filename=f"{code}.txt".format(code=code))
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, port=8080, host="0.0.0.0")
