@@ -67,7 +67,7 @@ The FastAPI to the example app is described below.
         else:
             return {"book": "Please enter a valid book id from 1 - 7."}
 
-### Calculate the frequency of top 20 most common words for the book with ipt id
+### Calculate the frequency of top 20 most common words for the book with user input
 
 `get("/common-words/{bookid}")`
 
