@@ -7,7 +7,7 @@ The project is a **Markov Text Generator** based on the seven Harry Potter Books
 The original dataset can be found on kaggle from [here](https://www.kaggle.com/datasets/balabaskar/harry-potter-books-corpora-part-1-7).
 
 ## Project Structure
-![image](https://github.com/nogibjj/harrypotter-fastapi/blob/main/README.md/Structure.png)
+![image](https://github.com/nogibjj/harrypotter-fastapi/blob/main/Structure.png)
 
 ## 7 Harry Potter Books
 
