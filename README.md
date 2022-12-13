@@ -103,3 +103,39 @@ The FastAPI to the example app is described below.
     {
         "message": "hello world knows nothin’ i was nothing next passageway. “what"
     }
+   
+## Database 
+We divided our features into generation part and storage part and privided the isolation and security of our service. 
+
+So we built storage part into a microservice to handle all storage operations and it can organically be requested and response by Restful API set by AWS Gateway. 
+
+### Microservice Structure
+
+Database part we implement a Database microservice with AWS DynamoDB, AWS Lambda and API Gateway. 
+![image](https://user-images.githubusercontent.com/26620662/207414696-d0ae424a-567c-4317-ac00-f9c981a37418.png)
+
+### Database Schema
+| Attribute        | Type         | Description            | Other         |
+| ---------------- | ------------ | ---------------------- | ------------- |
+| id               | string       | User Code              | Partition key |
+| texts            | string array | Generated text history |               |
+| last_update_date | datetime     | Track update time      | Auto update   |
+
+### AWS API Gateway Setting
+`/hp_text`
+
+GET - Get all history texts by ID
+
+POST - Update hsitory texts by ID
+
+OPTIONS - CORS support
+
+
+`/hp_text/id`
+
+GET - Get if the ID is existed inside Database 
+
+OPTIONS - CORS support
+
+
+
