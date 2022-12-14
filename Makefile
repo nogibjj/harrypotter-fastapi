@@ -2,10 +2,10 @@ install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 format:	
-	black *.py 
+	black *.py ./DB
 
 lint:
-	pylint --disable=R,C --extension-pkg-whitelist='pydantic' --ignore-patterns=test_.*?py *.py 
+	pylint --disable=R,C --extension-pkg-whitelist='pydantic' --ignore-patterns=test_.*?py *.py ./DB
 
 test: 
 	python -m pytest -vv test_*.py
